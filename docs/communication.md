@@ -4,20 +4,20 @@
 
 The prototype uses wired Ethernet and Modbus TCP. The PLC acts as a Modbus client. The embedded modules act as Modbus servers.
 
-Two communication styles are used:
+Two data paths are used:
 
-- cyclic read of status data, such as sensor states, motion state and homing state,
-- task-based commands, where the PLC sends a task number and confirmation number, then waits for a result and returned confirmation number.
+- cyclic reads for status data, such as sensor states, motion state and homing state,
+- task commands, where the PLC sends a task number and confirmation number, then waits for the result and returned confirmation number.
 
 ## Task exchange
 
-1. The PLC writes a task number and a new confirmation number.
-2. The module detects the new confirmation number.
-3. The module performs the requested operation.
-4. The module writes the result and the returned confirmation number.
-5. The PLC checks whether the response belongs to the current task.
+1. PLC writes a task number and a new confirmation number.
+2. The module detects the changed confirmation number.
+3. The module runs the requested operation.
+4. The module writes the result and returned confirmation number.
+5. PLC checks whether the response belongs to the current task.
 
-This mechanism prevents an old result from being treated as a response to a new command.
+The confirmation number prevents an old result from being accepted as a response to a new task.
 
 ## Register concept
 
@@ -28,4 +28,4 @@ This mechanism prevents an old result from being treated as a response to a new 
 
 ## Timing
 
-The prototype uses a conservative 100 ms communication cycle. During testing the selected timeout threshold was set with a margin large enough to avoid false faults, while still allowing fast detection of a missing response.
+The prototype uses a conservative 100 ms communication cycle. The timeout threshold was set with enough margin to avoid false faults, but still short enough to detect a missing response quickly.

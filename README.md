@@ -1,12 +1,12 @@
 # Industrial Sorting Machine Prototype
 
-Portfolio documentation and source code for my master's thesis project: a PLC-controlled prototype of an industrial sorting machine using embedded modules, wired Modbus TCP communication and computer vision.
+PLC-based sorting station built for my master's thesis. The project combines a virtual Siemens PLC/HMI with ESP32, STM32 and Raspberry Pi modules connected over wired Modbus TCP.
 
 ![Prototype sorting station](assets/real-station.jpg)
 
 ## What the machine does
 
-The prototype moves one workpiece at a time on a conveyor, stops it under the camera and classifies it by QR code or by physical size. The PLC controls the sequence, sends tasks to the embedded modules and decides which receiving bin should be used. The machine also supports manual operation between automatic sequences, emergency stop priority, communication timeout handling and basic HMI diagnostics.
+The station moves one workpiece at a time on a short conveyor. The PLC stops the workpiece under the camera, requests QR or size recognition, selects the target bin and runs the diverter sequence. The logic also includes manual mode, emergency stop priority, communication timeouts and HMI diagnostics.
 
 ## System overview
 
@@ -14,18 +14,18 @@ The prototype moves one workpiece at a time on a conveyor, stops it under the ca
 
 | Area | Implementation |
 | --- | --- |
-| Main controller | Siemens PLC logic developed in TIA Portal and tested with PLCSIM Advanced |
+| Main controller | Siemens PLC logic in TIA Portal, tested with PLCSIM Advanced |
 | HMI | Operator screens for auto/manual mode, alarms, counters and diagnostics |
 | Sensor module | ESP32, W5500 Ethernet module and two VL53L0X distance sensors |
 | Drive module | STM32F411, W5500 Ethernet module, two stepper drivers, conveyor and diverter motors |
-| Vision module | Raspberry Pi, camera, Node-RED flow and a local OpenCV/Flask recognition service |
+| Vision module | Raspberry Pi, camera, Node-RED flow and local OpenCV/Flask service |
 | Communication | Wired Ethernet, Modbus TCP, cyclic reads and task-based commands |
 
-## Selected results
+## Test results
 
 ![State machine](assets/state-machine.png)
 
-The prototype was verified through communication timing tests, positioning tests and classification tests. In the positioning test, the measured spread of the stopped workpiece position was 4.3 mm, which stayed below the theoretical limit estimated from communication delays and braking. The system was also tested for approximately 30 minutes with the selected communication timeout threshold without false timeout events.
+The prototype was checked with communication timing, positioning and recognition tests. The measured spread of the stopped workpiece position was 4.3 mm. The estimated limit from communication delay and braking was 5.87 mm. The timeout threshold was also tested for about 30 minutes without false timeout events.
 
 ![Positioning test](assets/positioning-test.jpg)
 
@@ -36,7 +36,7 @@ The prototype was verified through communication timing tests, positioning tests
 | ![QR recognition](assets/qr-detection-known.jpg) | ![Size recognition](assets/size-detection-small.jpg) |
 | ![Unknown QR result](assets/qr-detection-unknown.jpg) | ![Medium package size result](assets/size-detection-medium.jpg) |
 
-## HMI and flow examples
+## HMI and Node-RED
 
 | HMI auto mode | Node-RED communication flow |
 | --- | --- |
@@ -46,8 +46,8 @@ The prototype was verified through communication timing tests, positioning tests
 
 ```text
 .
-|-- assets/                    # Selected thesis figures and prototype photos
-|-- docs/                      # Short technical documentation in English
+|-- assets/                    # exported figures and prototype photos
+|-- docs/                      # short technical notes
 |-- firmware/
 |   |-- esp32-sensor-module/    # ESP32 + VL53L0X + W5500 Modbus TCP server
 |   `-- stm32-drive-module/     # STM32 stepper control and Modbus TCP task handler
@@ -55,13 +55,13 @@ The prototype was verified through communication timing tests, positioning tests
     `-- vision-module/          # Raspberry Pi OpenCV/Flask recognition service
 ```
 
-More details are available in:
+Docs:
 
 - [Architecture](docs/architecture.md)
 - [Communication model](docs/communication.md)
 - [Testing summary](docs/testing.md)
 - [Thesis summary](docs/thesis-summary.md)
 
-## Notes
+## Repository note
 
-The repository is prepared as a portfolio version of the project. It includes the important application code and selected documentation assets, not the full thesis source tree or IDE build output.
+This is the readable project version for GitHub: application code, selected figures and short technical notes. Build output, the full thesis source tree and temporary IDE files are not included.

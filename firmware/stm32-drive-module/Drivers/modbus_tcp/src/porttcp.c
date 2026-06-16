@@ -41,9 +41,9 @@
 
 /* ----------------------- Prototypes ---------------------------------------*/
 
-uint8_t ucTCPRequestFrame [MB_TCP_BUF_SIZE]; // Регистр приема
+uint8_t ucTCPRequestFrame [MB_TCP_BUF_SIZE]; // Receive buffer
 uint16_t ucTCPRequestLen;
-uint8_t ucTCPResponseFrame [MB_TCP_BUF_SIZE]; // Отправляем регистр
+uint8_t ucTCPResponseFrame [MB_TCP_BUF_SIZE]; // Response buffer
 uint16_t ucTCPResponseLen;
 uint8_t bFrameSent = FALSE;
 

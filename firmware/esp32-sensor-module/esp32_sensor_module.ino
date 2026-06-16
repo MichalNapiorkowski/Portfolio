@@ -86,8 +86,7 @@ void startI2C() {
   Wire.begin(I2C_SDA, I2C_SCL);
   Wire.setClock(400000);
 
-  // ESP32 Wire timeout protects the loop when a sensor/cable disappears.
-  // If your core does not support this name, use Wire.setTimeout(...).
+  // Keep the loop responsive if the I2C bus stalls.
   Wire.setTimeOut(I2C_TIMEOUT_MS);
 }
 
@@ -103,7 +102,7 @@ void recoverI2CBus() {
   pinMode(I2C_SCL, INPUT_PULLUP);
   delay(2);
 
-  // Clock out a stuck slave if SDA was held low during an interrupted transfer.
+  // Release a stuck I2C slave.
   for (uint8_t i = 0; i < 9; i++) {
     pinMode(I2C_SCL, INPUT_PULLUP);
     delayMicroseconds(5);
@@ -112,7 +111,7 @@ void recoverI2CBus() {
     delayMicroseconds(5);
   }
 
-  // Generate a STOP condition: SDA low while SCL released, then SDA released.
+  // Generate a STOP condition.
   pinMode(I2C_SDA, OUTPUT);
   digitalWrite(I2C_SDA, LOW);
   delayMicroseconds(5);
@@ -148,7 +147,7 @@ bool updateDetection(uint16_t distance, bool previousState) {
     return false;
   }
 
-  // Hysteresis avoids flicker around the 85 mm threshold.
+  // Hysteresis near the detection threshold.
   if (previousState) {
     return distance < DETECT_OFF_MM;
   }
@@ -220,7 +219,7 @@ void updateSensor(
     return;
   }
 
-  // Do not call rangingTest() if the sensor does not ACK its assigned address.
+  // Check ACK before starting a measurement.
   if (!pingI2C(addr)) {
     initialized = false;
     runtimeError = true;
@@ -231,8 +230,7 @@ void updateSensor(
     return;
   }
 
-  // Non-blocking-style measurement with our own timeout. This avoids getting
-  // trapped inside rangingTest() after a sensor/cable failure.
+  // Measurement with local timeout.
   if (!readDistanceWithTimeout(lox, addr, distance)) {
     initialized = false;
     runtimeError = true;
@@ -379,21 +377,6 @@ void loop() {
 
   holdingRegs[resultsRegister] = detection;
   holdingRegs[errorRegister] = errorCode;
-
-  // Serial.print("s1: ");
-  // Serial.print(detectedS1);
-  // Serial.print(" d1: ");
-  // Serial.print(dist1);
-  // Serial.print(" e1: ");
-  // Serial.print(errorS1);
-  // Serial.print(" | s2: ");
-  // Serial.print(detectedS2);
-  // Serial.print(" d2: ");
-  // Serial.print(dist2);
-  // Serial.print(" e2: ");
-  // Serial.print(errorS2);
-  // Serial.print(" | err: 0x");
-  // Serial.println(errorCode, HEX);
 
   delay(1);
 }

@@ -6,13 +6,13 @@ Development and implementation of a prototype industrial sorting machine using a
 
 ## Goal
 
-The goal was to build and verify a working prototype that connects PLC logic with distributed embedded modules responsible for sensing, motion control and vision-based recognition.
+Build a working prototype that connects PLC sequence logic with embedded modules for sensing, motion control and vision recognition.
 
 ## Scope
 
-The work covered:
+The work included:
 
-- mechanical concept and 3D printed prototype elements,
+- mechanical concept and 3D printed prototype parts,
 - PLC control logic and HMI screens,
 - ESP32 distance sensor module,
 - STM32 stepper motor drive module,
@@ -20,6 +20,6 @@ The work covered:
 - wired Modbus TCP communication,
 - tests of communication timing, positioning and recognition quality.
 
-## Practical result
+## Result
 
-The final prototype performs an automatic sorting cycle. It detects a workpiece, stops it under the camera, recognizes the QR code or size, moves the diverter to the selected position and sends the workpiece to the target bin.
+The prototype performs an automatic sorting cycle: it detects a workpiece, stops it under the camera, recognizes a QR code or size, moves the diverter and sends the workpiece to the selected bin.
