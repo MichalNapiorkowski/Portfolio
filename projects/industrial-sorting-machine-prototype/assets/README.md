@@ -10,7 +10,6 @@ This folder contains selected images exported from the thesis project and resize
 | `communication-diagram.png` | PLC and module communication diagram |
 | `state-machine.png` | PLC state machine diagram |
 | `hmi-auto-mode.png` | HMI automatic mode screen |
-| `node-red-flow.png` | Node-RED communication and recognition flow |
 | `positioning-test.jpg` | Vision-based positioning test contact sheet |
 | `qr-detection-known.jpg` | QR code recognition example |
 | `qr-detection-unknown.jpg` | Unknown QR code example |

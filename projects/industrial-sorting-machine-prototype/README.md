@@ -30,7 +30,7 @@ After recognition, the PLC selects the receiving bin and sends a motion task to 
 | HMI | Operator screens for auto/manual mode, alarms, counters and diagnostics |
 | Sensor module | ESP32, W5500 Ethernet module and two VL53L0X distance sensors |
 | Drive module | STM32F411, W5500 Ethernet module, two stepper drivers, conveyor and diverter motors |
-| Vision module | Raspberry Pi, camera, Node-RED flow and local OpenCV/Flask service |
+| Vision module | Raspberry Pi, camera, Node-RED and local OpenCV/Flask service |
 | Communication | Wired Ethernet, Modbus TCP, cyclic reads and task-based commands |
 
 ## Why this architecture
@@ -67,31 +67,13 @@ The prototype was checked with communication timing, positioning and recognition
 | <img src="assets/qr-detection-known.jpg" width="310" alt="QR recognition"> | <img src="assets/size-detection-small.jpg" width="310" alt="Size recognition"> |
 | <img src="assets/qr-detection-unknown.jpg" width="310" alt="Unknown QR result"> | <img src="assets/size-detection-medium.jpg" width="310" alt="Medium package size result"> |
 
-## HMI and Node-RED
+## HMI
 
-| HMI auto mode | Node-RED communication flow |
-| --- | --- |
-| <img src="assets/hmi-auto-mode.png" width="360" alt="HMI automatic mode"> | <img src="assets/node-red-flow.png" width="360" alt="Node-RED flow"> |
+The operator panel was prepared for automatic and manual operation. It shows the current machine state, selected recognition mode, cycle counters and alarm information. Manual controls were useful during testing because individual actions could be checked without running the full automatic sequence.
 
-## Repository structure
-
-```text
-.
-|-- assets/                         # exported figures and prototype photos
-|-- docs/                           # short technical notes
-|-- firmware/
-|   |-- esp32-sensor-module/         # ESP32 + VL53L0X + W5500 Modbus TCP server
-|   `-- stm32-drive-module/          # STM32 stepper control and Modbus TCP task handler
-`-- software/
-    `-- raspberry-pi-vision/         # Raspberry Pi OpenCV/Flask recognition service
-```
-
-Docs:
-
-- [Architecture](docs/architecture.md)
-- [Communication model](docs/communication.md)
-- [Testing summary](docs/testing.md)
-- [Thesis summary](docs/thesis-summary.md)
+<p align="center">
+  <img src="assets/hmi-auto-mode.png" width="640" alt="HMI automatic mode">
+</p>
 
 ## Repository note
 

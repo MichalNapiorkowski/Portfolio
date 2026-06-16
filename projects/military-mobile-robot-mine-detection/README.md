@@ -55,21 +55,6 @@ The mechanical part was designed as a compact printed structure. The platform ho
   <img src="assets/robot-top-view.jpg" width="520" alt="Robot electronics inside the chassis">
 </p>
 
-## Repository structure
-
-```text
-.
-|-- assets/                         # selected project figures and photos
-|-- docs/                           # editable system diagram
-|-- firmware/
-|   |-- esp32-wroom-motor-controller/      # stepper motor control firmware
-|   |-- esp32-wrover-web-control/          # camera stream and web control firmware
-|   |-- pulse-induction-metal-detector/    # detector sampling and decision logic
-|   `-- sampling-test/                     # measurement helper sketch
-`-- mechanical/
-    `-- step-files/                 # exported models of printed parts
-```
-
 ## Notes
 
 The code is kept close to the thesis version, with credentials removed and one copied typo corrected in the motor-controller sketch. The project is not a production-ready demining device. It is a student prototype used to verify the mechanical layout, wireless control, motor control and metal detection concept.
