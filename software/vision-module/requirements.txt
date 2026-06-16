@@ -1,0 +1,4 @@
+flask
+numpy
+opencv-python
+# picamera2 is usually installed from Raspberry Pi OS packages.
