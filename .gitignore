@@ -22,3 +22,5 @@ Release/
 .idea/
 .DS_Store
 Thumbs.db
+OldVersions/
+*.bak
