@@ -1,4 +1,4 @@
-# Vision Module
+# Raspberry Pi Vision Module
 
 Raspberry Pi service for QR code and workpiece size recognition. Node-RED handles Modbus registers and calls the local HTTP endpoints when a new vision task arrives.
 
