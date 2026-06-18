@@ -6,7 +6,6 @@ Main file: `src/dma_capture.c`
 
 | File | Purpose |
 | --- | --- |
-| `platformio.ini` | PlatformIO configuration for Raspberry Pi Pico / Pico SDK |
 | `src/dma_capture.c` | ADC/DMA capture, threshold calculation, detection decision and UART output |
 | `src/resistor_dac.pio` | PIO helper program kept with the original Pico SDK source set |
 
