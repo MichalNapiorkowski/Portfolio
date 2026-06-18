@@ -221,6 +221,7 @@ void equal_intervals(){
 
 int main() {
     stdio_init_all();
+
     uart_init(UART_ID, BAUD_RATE);
     gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
     gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART);
@@ -245,44 +246,23 @@ int main() {
     configure_DMA_ADC();
 
     sleep_ms(10000);
-    configured = true;
-    sleep_ms(2000);
+
+    last_time = get_absolute_time();
 
     while (true) {
-        sleep_ms(1000);
-        value = 1;
-        exchange_data();
-        sleep_ms(1500);
-        value = 0;
-        exchange_data();
-        sleep_ms(300);
-        value = 1;
-        exchange_data();
-        sleep_ms(200);
-        value = 2;
-        exchange_data();
-        sleep_ms(200);
-        value = 5;
-        exchange_data();
-        sleep_ms(100);
-        value = 7;
-        exchange_data();
-        sleep_ms(300);
-        value = 8;
-        exchange_data();
-        sleep_ms(200);
-        value = 9;
-        exchange_data();
-        sleep_ms(150);
-        value = 2;
-        exchange_data();
-        sleep_ms(60);
-        value = 0;
-        exchange_data();
-        sleep_ms(3000);
+        start_time = get_absolute_time();
 
+        generate_pwm_signal();
+        ADC_reading();
+        find_mean();
+        find_threshold();
+        detect();
+        signal_by_led();
+        play_tone();
+        exchange_data();
 
-
+        equal_intervals();
     }
+
     return 0;
 }
