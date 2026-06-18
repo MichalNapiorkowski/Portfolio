@@ -3,7 +3,7 @@
 PLC-based sorting station built for my master's thesis. The project combines a virtual Siemens PLC/HMI with three embedded modules: ESP32 for workpiece presence sensing, STM32 for stepper motor control and Raspberry Pi for vision recognition. All modules communicate with the PLC over wired Modbus TCP.
 
 <p align="center">
-  <img src="assets/real-station.jpg" width="520" alt="Prototype sorting station">
+  <img src="assets/real-station.png" width="520" alt="Prototype sorting station">
 </p>
 
 ## Project goal
