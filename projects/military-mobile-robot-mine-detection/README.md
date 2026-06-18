@@ -74,7 +74,6 @@ The mechanical part was designed as a compact printed structure. The platform ho
 | `firmware/esp32-wrover-web-control` | `camera_web_control_server.ino` | Camera stream, browser panel, Wi-Fi status and UART command handling |
 | `firmware/esp32-wroom-motor-controller` | `stepper_motor_controller.ino` | Stepper motor control and TMC2209 configuration |
 | `firmware/pulse-induction-metal-detector` | `src/dma_capture.c` | PlatformIO/Pico SDK detector firmware with ADC/DMA sampling and UART output |
-| `firmware/sampling-test` | `adc_sampling_test.ino` | Helper sketch used during signal sampling tests |
 
 ## Notes
 
