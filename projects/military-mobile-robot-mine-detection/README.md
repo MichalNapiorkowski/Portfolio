@@ -28,14 +28,14 @@ The motor controller is based on an ESP32 WROOM module. It receives simple comma
 | --- | --- |
 | Operator interface | ESP32 WROVER web server with camera preview and control buttons |
 | Motor controller | ESP32 WROOM, UART command interface and TMC2209 stepper drivers |
-| Detection module | Pulse-induction detector, analog signal conditioning and ADC sampling |
+| Detection module | Pulse-induction detector, analog signal conditioning and RP2040 ADC/DMA sampling |
 | Motion system | Four stepper motors with configurable speed/current profiles |
 | Mechanical design | 3D-printed platform, coil holder and top cover with camera/antenna mounting |
 | Power supply | 2S battery pack with charging module and voltage converters |
 
 ## Why this architecture
 
-The web interface and camera stream were placed on the ESP32 WROVER because that module has PSRAM and camera support. The stepper control was moved to a separate ESP32 WROOM module, so motor commands and driver configuration could be handled independently from the camera stream. The detector circuit remained a separate measurement block because it required pulse generation, analog signal conditioning and sampling close to the coil.
+The web interface and camera stream were placed on the ESP32 WROVER because that module has PSRAM and camera support. The stepper control was moved to a separate ESP32 WROOM module, so motor commands and driver configuration could be handled independently from the camera stream. The detector circuit remained a separate measurement block because it required pulse generation, analog signal conditioning and sampling close to the coil. The detector firmware is kept as a PlatformIO/Pico SDK project based on the RP2040 ADC/DMA capture code.
 
 ## Web interface
 
@@ -73,7 +73,7 @@ The mechanical part was designed as a compact printed structure. The platform ho
 | --- | --- | --- |
 | `firmware/esp32-wrover-web-control` | `camera_web_control_server.ino` | Camera stream, browser panel, Wi-Fi status and UART command handling |
 | `firmware/esp32-wroom-motor-controller` | `stepper_motor_controller.ino` | Stepper motor control and TMC2209 configuration |
-| `firmware/pulse-induction-metal-detector` | `pulse_induction_detector.ino` | Detector sampling and decision logic |
+| `firmware/pulse-induction-metal-detector` | `src/dma_capture.c` | PlatformIO/Pico SDK detector firmware with ADC/DMA sampling and UART output |
 | `firmware/sampling-test` | `adc_sampling_test.ino` | Helper sketch used during signal sampling tests |
 
 ## Notes
