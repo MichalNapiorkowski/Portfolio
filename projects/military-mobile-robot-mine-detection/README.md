@@ -64,7 +64,7 @@ During testing, the detector response was checked for different object distances
 The mechanical part was designed as a compact printed structure. The platform holds the electronics and drive components, the front section supports the detector coil, and the top cover provides space for the camera and antenna. STEP exports of the main printed parts are included in the `mechanical` folder.
 
 <p align="center">
-  <img src="assets/robot-top-view.jpg" width="540" alt="Robot electronics inside the chassis">
+  <img src="assets/robot-top-view.png" width="540" alt="Robot electronics inside the chassis">
 </p>
 
 ## Code included
