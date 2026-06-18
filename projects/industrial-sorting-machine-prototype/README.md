@@ -49,11 +49,6 @@ The PLC acts as a Modbus TCP client. The ESP32, STM32 and Raspberry Pi side act 
 The confirmation number is used to avoid accepting an old response as a result of a new task. This is especially important when the machine is stopped, reset or switched between automatic and manual operation.
 
 ## Selected tests
-
-<p align="center">
-  <img src="assets/state-machine.png" width="720" alt="PLC state machine">
-</p>
-
 The prototype was checked with communication timing, positioning and recognition tests. The measured spread of the stopped workpiece position was 4.3 mm. The estimated limit from communication delay and braking was 5.87 mm. The timeout threshold was also tested for about 30 minutes without false timeout events.
 
 <p align="center">
