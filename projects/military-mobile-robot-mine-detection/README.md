@@ -3,7 +3,7 @@
 Mobile robot prototype built for my engineering thesis. The project combines a 3D-printed chassis, camera-based remote control, stepper motor drive and a pulse-induction metal detector. The robot was made as a functional model for checking the mechanical layout, wireless control and detector concept.
 
 <p align="center">
-  <img src="assets/robot-isometric.jpg" width="520" alt="Mobile robot prototype">
+  <img src="assets/robot-isometric.png" width="520" alt="Mobile robot prototype">
 </p>
 
 ## Project goal
