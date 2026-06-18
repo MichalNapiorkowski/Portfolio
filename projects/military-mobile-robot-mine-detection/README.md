@@ -40,7 +40,7 @@ The web interface and camera stream were placed on the ESP32 WROVER because that
 ## Web interface
 
 <p align="center">
-  <img src="assets/web-control-interface.png" width="640" alt="ESP32 web control interface">
+  <img src="assets/web-control-interface.png" width="400" alt="ESP32 web control interface">
 </p>
 
 The browser panel was used as the operator interface during tests. It includes the camera preview, movement buttons, speed selection, detector sensitivity and status indicators for battery and connection quality. This made the prototype easy to test without a separate desktop application.
